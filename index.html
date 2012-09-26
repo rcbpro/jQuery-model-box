@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Testing the jQuery plugin</title>
+<script type="text/javascript" language="javascript" src="src/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" language="javascript" src="src/jquery.modelBox.js"></script>
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+	$('#modelBoxPopUpLink').live("click", function(){
+		// Populate the model box here
+		var returnForModelBox = $(this).modelBox('modelDialogTester');
+		// trigger the model box mask here and the parameters list is as follows
+		// 1. div u want to populate, 2. css map, 3. cssClasses, 4. whatever name for a mask clos handler
+		$('#' + returnForModelBox[0]).click(function(){
+			$(this).modelBox('modelDialogTester', null, null, 'maskClose');
+		});
+	});
+});
+</script>
+</head>
+<body>
+<a id="modelBoxPopUpLink" href="javascript:void(0);">Hi this is only to test our jquery plugin</a>
+<div id="modelDialogTester">some text</div>
+</body>
+</html>
