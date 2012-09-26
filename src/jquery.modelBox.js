@@ -1,6 +1,6 @@
 /*
  * modelBox
- * https://github.com/rcbpro/modelBox
+ * https://github.com/rcbpro/jQuery-model-box/
  *
  * Copyright (c) 2012 rcbpro
  * Licensed under the MIT, FREE licenses.
