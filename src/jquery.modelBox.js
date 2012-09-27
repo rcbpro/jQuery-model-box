@@ -29,29 +29,36 @@
 				$('#' + this.sl).wrap('<div id="' + this.boxId + '" />').css(cssMap[1]);				
 				$('#' + this.boxId).css(cssMap[0])
 			}
-			$('<a id="' + this.sl + 'Link" class="close"></a>').appendTo('#' + this.sl);
+			$('<a id="' + this.sl + 'Link" class="close"></a>').prependTo('#' + this.sl);
 			$('#' + this.sl + 'Link').live("click", function(){
-				var orgMaskName = $(this).attr('id').replace('Link', 'Mask');
-				var orgBoxName = $(this).attr('id').replace('Link', 'Box');				
+				var orgMaskName, orgBoxName, orgInsideDivName;
+				orgMaskName = $(this).attr('id').replace('Link', 'Mask');
+				orgBoxName = $(this).attr('id').replace('Link', 'Box');	
+				orgInsideDivName = $(this).attr('id').replace('Link', '');				
 				$(this).remove();				
-				$('#' + orgMaskName).hide();
-				$('#' + orgBoxName).hide();
+				$('#' + orgMaskName).remove();
+				$('#' + orgInsideDivName).unwrap('#' + orgBoxName).removeAttr('style');
 			});
 			(!classNotCssMap) ? $('#' + this.sl + 'Link').css(cssMap[3]) : $('#' + this.sl + 'Link').addClass(cssMap);
 		},
 		createMaskWrapper: function(cssMap, classNotCssMap){
 			$('<div id="' + this.maskId + '"></div>').appendTo('#' + this.boxId);
 			$('#' + this.maskId).live("click", function(){
-				var orgBoxName = $(this).attr('id').replace('Mask', 'Box');	
-				$('#' + orgBoxName).hide();
+				var orgBoxName, orgInsideDivName;
+				orgBoxName = $(this).attr('id').replace('Mask', 'Box');	
+				orgInsideDivName = $(this).attr('id').replace('Mask', '');			
+				$('#' + $(this).attr('id').replace('Mask', 'Link')).remove();								
+				$('#' + orgInsideDivName).unwrap('#' + orgBoxName).removeAttr('style');
+				$(this).remove();
 			});
 			(!classNotCssMap) ? $('#' + this.maskId).css(cssMap[2]) : $('#' + this.maskId).addClass(cssMap);
 		},
 		populateModelBoxToFront: function(){
-			var maskHeight = $(document).height();
-			var maskWidth = $(window).width();
-			var winH = $(window).height();
-			var winW = $(window).width();
+			var maskHeight, maskWidth, winH, winW;
+			maskHeight = $(document).height();
+			maskWidth = $(window).width();
+			winH = $(window).height();
+			winW = $(window).width();
 			$('#' + this.boxId).fadeIn(this.fadeInFadeOut[0]);
         	$('#' + this.maskId).css({'width': maskWidth, 'height': maskHeight}).fadeIn(this.fadeInFadeOut[0]).fadeTo(this.fadeInFadeOut[1], 0.7);   
 			$('#' + this.sl).css({'top':  winH / 2 - $('#' + this.sl).height() / 2, 'left' : winW / 2 - $('#' + this.sl).width() / 2}).fadeIn(this.fadeInFadeOut[0]);
@@ -95,7 +102,7 @@
 			  'display': 'none'			
 		  },
 		  {
-			  'background':'url(images/close.png) no-repeat right', 
+			  'background':'url("images/close.png") no-repeat scroll 0px -8px transparent', 
 			  'float': 'right', 
 			  'height': '32px', 
 			  'width': '32px',
