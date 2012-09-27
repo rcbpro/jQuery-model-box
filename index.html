@@ -32,37 +32,39 @@
 	background-color: #000;
 	display: none;
 }
+.closeBtn{
+	background':url(images/close.png) no-repeat right; 
+    float: right; 
+    height: 32px; 
+    width: 32px;
+    cursor: pointer;
+}
 </style>-->
 <script type="text/javascript" language="javascript" src="src/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" language="javascript" src="src/jquery.modelBox.js"></script>
 <script type="text/javascript" language="javascript">
 $(document).ready(function(){
-	$('#modelBoxPopUpLink').live("click", function(){
-		//// Populate the model box here
-		var returnForModelBox = $(this).modelBox('modelDialogTester');
+	$('#modelBoxPopUpLink').click(function(){
+		// trigger the model box mask here and the parameters list is as follows
+		// 1. div u want to populate, 2. fade In Fade Out Speed, 3. css map, 4. cssClasses in return of the mask id and the wrapper box id as an array
+		$(this).modelBox('modelDialogTester');
 		// * situation 1
 		// If you want to use css classes insted of default css properties defined in the plugin please use the following code other than the above
-		// var returnForModelBox = $(this).modelBox('modelDialogTester', ['boxWrapper', 'dialodTester', 'maskCss'], null);
+		// $(this).modelBox('modelDialogTester', ['boxWrapper', 'dialodTester', 'maskCss', 'closeBtn'], null);
 		// * situation 2
 		// If you want to use custom css properties to be extended default css properties defined in the plugin please use the following code other than the above		
 		/* 
-		var returnForModelBox = $(this).modelBox('modelDialogTester', 
-												 [
-												  {'position':'absolute', 'left': '0', 'top' : '0', 'z-index' : '9999', 'background-color' : '#000'},
-												  {'position':'fixed', 'left': '0', 'top' : '0', 'z-index' : '9998', 'padding' : '20px', 'display' : 'none', 'width' : '260px', 'border-radius' : '2px', 'background' : 'url(images/titlebg.jpg) repeat-x top #000'},
-												  {'position':'absolute', 'left': '0', 'top' : '0', 'z-index' : '9000', 'background-color' : '#000', 'display' : 'none'}												  
-												 ], 
-												null);
+		$(this).modelBox('modelDialogTester', 
+										   [
+											{'position':'absolute', 'left': '0', 'top' : '0', 'z-index' : '9999', 'background-color' : '#000'},
+											{'position':'fixed', 'left': '0', 'top' : '0', 'z-index' : '9998', 'padding' : '20px', 'display' : 'none', 'width' : '260px', 'border-radius' : '2px', 'background' : 'url(images/titlebg.jpg) repeat-x top #000'},
+											{'position':'absolute', 'left': '0', 'top' : '0', 'z-index' : '9000', 'background-color' : '#000', 'display' : 'none'},												  												  {'background':'url(images/close.png) no-repeat right', 'float': 'right', 'height': '32px', 'width': '32px', 'cursor': 'pointer'}
+										   ], 
+										  null);
 		*/
 		// * situation 3
 		// If you want to use custom fadein fadeout speed do it through this code 
-		// var returnForModelBox = $(this).modelBox('modelDialogTester', ['300', '250']);
-		// returnForModelBox[0] is the mask id, returnForModelBox[1] is the wrapper for the 'modelDialogTester'
-		// trigger the model box mask here and the parameters list is as follows
-		// 1. div u want to populate, 2. css map, 3. cssClasses, 4. whatever name for a mask clos handler
-		$('#' + returnForModelBox[0]).click(function(){
-			$(this).modelBox('modelDialogTester', null, null, null, 'maskClose');
-		});
+		// $(this).modelBox('modelDialogTester', ['300', '250']);
 	});
 });
 </script>
