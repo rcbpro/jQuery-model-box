@@ -30,7 +30,7 @@
 				$('#' + this.boxId).css(cssMap[0])
 			}
 			$('<a id="' + this.sl + 'Link" class="close"></a>').prependTo('#' + this.sl);
-			$('#' + this.sl + 'Link').live("click", function(){
+			$('#' + this.sl + 'Link').delegate(this, "click", function(){
 				var orgMaskName, orgBoxName, orgInsideDivName;
 				orgMaskName = $(this).attr('id').replace('Link', 'Mask');
 				orgBoxName = $(this).attr('id').replace('Link', 'Box');	
@@ -43,7 +43,7 @@
 		},
 		createMaskWrapper: function(cssMap, classNotCssMap){
 			$('<div id="' + this.maskId + '"></div>').appendTo('#' + this.boxId);
-			$('#' + this.maskId).live("click", function(){
+			$('#' + this.maskId).delegate(this, "click", function(){
 				var orgBoxName, orgInsideDivName;
 				orgBoxName = $(this).attr('id').replace('Mask', 'Box');	
 				orgInsideDivName = $(this).attr('id').replace('Mask', '');			
