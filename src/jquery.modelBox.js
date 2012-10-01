@@ -13,8 +13,8 @@
 			this.sl = selector;
 			this.maskId = this.sl + 'Mask';
 			this.boxId = this.sl + 'Box';
-			this.config = $.extend({}, $.fn.modelBox.defaults);
-			this.fadeInFadeOut = $.extend({}, $.fn.modelBox.fadeInFadeOutDefault);			
+			this.config = $.extend({}, $.modelBox.defaults);
+			this.fadeInFadeOut = $.extend({}, $.modelBox.fadeInFadeOutDefault);			
 			this.cssClasses = ((cssClasses != null) && (cssClasses != '')) ? cssClasses : this.config;
 			this.classNotCssMap = ((cssClasses != null) && (cssClasses != '')) ? true : false;
 			this.createOuterWrapperAndMapCss(this.cssClasses, this.classNotCssMap);
@@ -30,7 +30,7 @@
 				$('#' + this.boxId).css(cssMap[0])
 			}
 			$('<a id="' + this.sl + 'Link" class="close"></a>').prependTo('#' + this.sl);
-			$('#' + this.sl + 'Link').delegate(this, "click", function(){
+			$('#' + this.sl + 'Link').live("click", function(){
 				var orgMaskName, orgBoxName, orgInsideDivName;
 				orgMaskName = $(this).attr('id').replace('Link', 'Mask');
 				orgBoxName = $(this).attr('id').replace('Link', 'Box');	
@@ -43,7 +43,7 @@
 		},
 		createMaskWrapper: function(cssMap, classNotCssMap){
 			$('<div id="' + this.maskId + '"></div>').appendTo('#' + this.boxId);
-			$('#' + this.maskId).delegate(this, "click", function(){
+			$('#' + this.maskId).live("click", function(){
 				var orgBoxName, orgInsideDivName;
 				orgBoxName = $(this).attr('id').replace('Mask', 'Box');	
 				orgInsideDivName = $(this).attr('id').replace('Mask', '');			
@@ -64,15 +64,12 @@
 			$('#' + this.sl).css({'top':  winH / 2 - $('#' + this.sl).height() / 2, 'left' : winW / 2 - $('#' + this.sl).width() / 2}).fadeIn(this.fadeInFadeOut[0]);
 		}
 	};
-	$.fn.modelBox = function(selector, fadeInFadeOutMap, cssProperties, classes){
+	$.modelBox = function(selector, fadeInFadeOutMap, cssProperties, classes){
 		var obj = Object.create(modelBox);
-		this.each(function(){
-			obj.init(selector, fadeInFadeOutMap, cssProperties, classes);			  
-		});
-		return [obj.maskId, obj.boxId];		
+		obj.init(selector, fadeInFadeOutMap, cssProperties, classes);			  
 	};
 	
-	$.fn.modelBox.defaults = 
+	$.modelBox.defaults = 
 		[
 		  { 
 			  'position': 'absolute',
@@ -109,5 +106,5 @@
 			  'cursor': 'pointer'
 		  }		  
 	  ];
-	$.fn.modelBox.fadeInFadeOutDefault = ['500', '500'];
+	$.modelBox.fadeInFadeOutDefault = ['500', '500'];
 }(jQuery));
